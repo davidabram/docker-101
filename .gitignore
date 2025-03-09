@@ -1,3 +1,61 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go build command
+/build/
+/bin/
+
+# Vendor dependencies (if using dep or similar dependency management)
+/vendor/
+
+# IDE and editor files
+/.idea/
+/.vscode/
+*.swp
+*.swo
+
+# Go modules and package cache
+/go/pkg/
+/go/bin/
+/go/src/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Go coverage files
+*.cover
+*.cov
+
+# Compiled object files
+*.o
+*.a
+*.so
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# cgo generated files
+_cgo_
+
+# Test binaries
+*.test
+
+# Debugging files
+*.prof
+*.trace
+
 # Logs
 logs
 *.log
