@@ -13,8 +13,6 @@ RUN apk add --no-cache tini \
     && addgroup -S crocoder \
     && adduser -S crocoder -G crocoder
 
-ENV NODE_ENV=production
-
 WORKDIR /app
 
 COPY --chown=crocoder:crocoder --from=builder /app/node_modules ./node_modules

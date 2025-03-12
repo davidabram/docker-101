@@ -3,17 +3,14 @@ FROM oven/bun:1.1.7-alpine AS builder
 WORKDIR /app
 
 COPY package.json bun.lockb ./
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile || true
 
 COPY . .
 
 FROM oven/bun:1.1.7-alpine
 
-RUN apk add --no-cache tini \
-    && addgroup -S crocoder \
-    && adduser -S crocoder -G crocoder
-
-ENV NODE_ENV=production
+RUN addgroup -S crocoder \
+      && adduser -S crocoder -G crocoder
 
 WORKDIR /app
 
@@ -25,10 +22,5 @@ COPY --chown=crocoder:crocoder --from=builder /app/bun.lockb ./bun.lockb
 USER crocoder
 
 EXPOSE 3000
-
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
-
-ENTRYPOINT ["/sbin/tini", "--"]
 
 CMD ["bun", "run", "index.ts"]
